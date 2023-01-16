@@ -1,0 +1,74 @@
+
+/* -------------- Declaration Variable Couleurs ------------ */
+
+$lightBckgrnd : #A6AB11,#BCC213;
+$darkBckgrnd : #a15be2,#3d1c5c;
+$light : #A6AB11;
+$dark: #3d1c5c;
+
+/* -------------------------- NAV -------------------------- */
+
+nav {
+    background-color: $dark;
+    color: #fff;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+        &:hover{
+            background-color: $light;
+        }
+}
+
+/* ------------------------- ITEM ---------------------------- */
+
+@function backColor($type) {
+    $value : #B566FF !default;
+    @if($type == "clair") {
+        $random : random(length($lightBckgrnd));
+        $value : nth($lightBckgrnd, $random);
+    }
+    @else {
+        $random : random(length($darkBckgrnd));
+        $value : nth($darkBckgrnd, $random);
+    }
+    @return $value;
+}
+
+    .item-image{
+        width: 300px;
+        height:200px;
+        object-fit:cover;
+    }
+
+    .item-price {
+        font-weight: bold;
+    }
+
+
+    @for $i from 1 through 6 {
+        .menu-item#{$i}{
+            @if (($i % 2)==0) {
+                background-color: backColor("clair");
+                color: $dark;
+            }
+            @else {
+                background-color: backColor("foncé");
+                color: $light;
+            }
+        }
+    }
